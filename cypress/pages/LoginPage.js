@@ -1,46 +1,24 @@
 class LoginPage {
-
-  usernameInput() {
-    return cy.get('input[name="username"]');
-  }
-
-  passwordInput() {
-    return cy.get('input[name="password"]');
-  }
-
-  loginButton() {
-    return cy.get('button[type="submit"]');
-  }
-
-  errorMessage() {
-    return cy.get('.oxd-alert-content-text');
-  }
-
-  dashboardHeader() {
-    return cy.get('h6');
-  }
+  usernameField = 'input[name="username"]';
+  passwordField = 'input[name="password"]';
+  loginButton = 'button[type="submit"]';
 
   visit() {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.visit('/web/index.php/auth/login');
+    cy.get('.orangehrm-login-slot', { timeout: 10000 }).should('be.visible');
   }
 
   inputUsername(username) {
-    this.usernameInput().clear().type(username);
+    cy.get(this.usernameField).should('be.visible').clear().type(username);
   }
 
   inputPassword(password) {
-    this.passwordInput().clear().type(password);
+    cy.get(this.passwordField).should('be.visible').clear().type(password);
   }
 
   clickLogin() {
-    this.loginButton().click();
-  }
-
-  login(username, password) {
-    this.inputUsername(username);
-    this.inputPassword(password);
-    this.clickLogin();
+    cy.get(this.loginButton).click();
   }
 }
 
-export default new LoginPage();
+export default LoginPage;

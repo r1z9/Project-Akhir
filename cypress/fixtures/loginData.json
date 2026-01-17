@@ -5,18 +5,6 @@
   },
   "invalidUser": {
     "username": "Admin",
-    "password": "salahpassword"
-  },
-  "emptyUser": {
-    "username": "",
-    "password": ""
-  },
-  "emptyUsername": {
-    "username": "",
-    "password": "admin123"
-  },
-  "emptyPassword": {
-    "username": "Admin",
-    "password": ""
+    "password": "salah"
   }
 }
