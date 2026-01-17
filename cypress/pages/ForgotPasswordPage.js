@@ -1,19 +1,31 @@
 class ForgotPasswordPage {
-  forgotLink = '.orangehrm-login-forgot-header';
-  usernameField = '[name="username"]';
+  forgotPasswordLink = '.orangehrm-login-forgot-header';
+  usernameField = 'input[name="username"]';
   resetButton = 'button[type="submit"]';
-  title = '.orangehrm-forgot-password-title';
+  titleText = '.orangehrm-forgot-password-title';
 
   clickForgotPassword() {
-    cy.get(this.forgotLink).click();
+    cy.get(this.forgotPasswordLink)
+      .should('be.visible')
+      .click();
   }
 
   inputUsername(username) {
-    cy.get(this.usernameField).type(username);
+    cy.get(this.usernameField)
+      .should('be.visible')
+      .clear()
+      .type(username);
   }
 
   clickReset() {
-    cy.get(this.resetButton).click();
+    cy.get(this.resetButton)
+      .should('be.visible')
+      .click();
+  }
+
+  verifyForgotPasswordPage() {
+    cy.get(this.titleText)
+      .should('contain.text', 'Reset Password');
   }
 }
 

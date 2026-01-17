@@ -7,20 +7,17 @@ describe('Forgot Password Feature', () => {
   });
 
   it('Request reset password berhasil', () => {
-    cy.intercept(
-      'POST',
-      '**/auth/requestPasswordResetCode'
-    ).as('resetPassword');
-
     ForgotPasswordPage.clickForgotPassword();
+
+    cy.url().should('include', '/auth/requestPasswordResetCode');
+
     ForgotPasswordPage.inputUsername('Admin');
     ForgotPasswordPage.clickReset();
 
-    cy.wait('@resetPassword')
-      .its('response.statusCode')
-      .should('eq', 200);
+    cy.url().should('include', '/auth/sendPasswordReset');
 
-    cy.get(ForgotPasswordPage.title)
-      .should('contain', 'Reset Password');
+    cy.contains(
+      'Reset Password link sent successfully'
+    ).should('be.visible');
   });
 });

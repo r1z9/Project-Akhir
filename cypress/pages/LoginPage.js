@@ -5,15 +5,15 @@ class LoginPage {
 
   visit() {
     cy.visit('/web/index.php/auth/login');
-    cy.get('.orangehrm-login-slot', { timeout: 10000 }).should('be.visible');
+    cy.get(this.usernameField, { timeout: 15000 }).should('be.visible');
   }
 
   inputUsername(username) {
-    cy.get(this.usernameField).should('be.visible').clear().type(username);
+    cy.get(this.usernameField).clear().type(username);
   }
 
   inputPassword(password) {
-    cy.get(this.passwordField).should('be.visible').clear().type(password);
+    cy.get(this.passwordField).clear().type(password);
   }
 
   clickLogin() {
@@ -21,4 +21,4 @@ class LoginPage {
   }
 }
 
-export default LoginPage;
+export default new LoginPage();
